@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-   public Rigidbody spherePrefab;
+   // Declare prefab as GameObject
+   public GameObject spherePrefab;
 
    void Update(){
     if (Input.GetKeyDown(KeyCode.Q)){
-        Instantiate(spherePrefab, transform.position, Quaternion.identity);
-        spherePrefab.AddForce(-transform.forward * 10, ForceMode.Acceleration);
+        // "instance" = Instansiation of prefab. //transform.position = new position for obect to start at. //Quaternion.identity = no rotation of the object
+        var instance = Instantiate(spherePrefab, transform.position, Quaternion.identity);
+        // Gets the Rigidbody Component of the "instance" of the Game Object and Adds Force to It
+        instance.GetComponent<Rigidbody>().AddForce(transform.forward * 1000, ForceMode.Acceleration);
     }
    }
 }
